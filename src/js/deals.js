@@ -1,25 +1,22 @@
 // Setup Alert Boxes
 const alertBoxesData = [
   {
-    body: `We are Open 7 days a week.`,
-  },
-  {
-    body: `Both Appointments and Walkins are Welcome.`,
-  },
-  {
     body: `Special Discounts for Veterans & Military Personel, Students, and Senior Citizens.`,
+  },
+  {
+    body: 'We offer competive pricing.',
   },
 ];
 const alertBoxHtml = alertBoxesData.map((bx) => {
   const body = bx.body ? bx.body : ``
   return `<li>${body}</li>`
 });
-const alertBoxesElement = document.querySelector("#alert-boxes .card-body")
-if (alertBoxesElement) alertBoxesElement.innerHTML = alertBoxHtml.join("")
+const alertBoxesElement = document.querySelector("#alert-boxes .card-body");
 
-
-
-
+if (alertBoxesElement) 
+{
+  alertBoxesElement.innerHTML = alertBoxHtml.join("");
+}
 
 
 
@@ -32,7 +29,7 @@ const dealsSlidesData = [
   },
   {
     icon: `<i class="icon bx bxs-car-wash display-6"></i>`,
-    title: `Synthetic Oil Change for just $89.99`,
+    title: `Synthetic Oil Change for just $100.00`,
     body: `Get your car running smoothly with our oil change specials! Synthetic oil change for $89.99. Quality service at great prices!`,
   },
   {
@@ -54,16 +51,6 @@ const dealsSlidesData = [
     icon: `<i class="icon bx bxs-wrench display-6"></i>`,
     title: `Full Tune Up Starting from just $249.99`,
     body: `Tune up starting at just $249.99! Limited time offer. Optimize performance and reliability. Visit us today!`,
-  },
-  {
-    icon: `<i class="icon bx bxs-color display-6"></i>`,
-    title: `4 New Tires from $399.99 & Up`,
-    body: `Get rolling with a fantastic deal! 4 new tires for $399.99 & free wheel alignment. Limited time offer. Visit us now!`,
-  },
-  {
-    icon: `<i class="icon bx bxs-color display-6"></i>`,
-    title: `4 Used Tires from $199.99 & Up`,
-    body: `Get road-ready with our special deal! 4 used tires for $199.99 & free wheel alignment. Limited time offer. Visit us now!`,
   },
   {
     icon: `<i class="icon bx bxs-car-garage display-6"></i>`,
@@ -91,4 +78,8 @@ const dealsSlidesHtml = dealsSlidesData.map((sl) => {
   return output
 });
 const dealsSlidesElement = document.getElementById("deals-slides")
-if (dealsSlidesElement) dealsSlidesElement.innerHTML = dealsSlidesHtml.join("")
+
+if (dealsSlidesElement) 
+{
+  dealsSlidesElement.innerHTML = dealsSlidesHtml.join("");
+}

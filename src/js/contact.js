@@ -1,6 +1,6 @@
 // // Store status
 function storeStatus() {
-  const timeZone = "America/New_York";
+  const timeZone = "America/Chicago";
   const now = new Date();
   const localTime = new Date(
     now.toLocaleString("en-US", {
@@ -26,7 +26,7 @@ function storeStatus() {
   });
   const isOpeningHours =
     (dayOfWeek === "Sunday" && hours >= 9 && hours < 17) ||
-    (dayOfWeek !== "Sunday" && hours >= 8 && hours < 19);
+    (dayOfWeek !== "Sunday" && hours >= 8 && hours < 17);
 
   const outputTime = isOpeningHours
     ? '<span class="open text-success fw-bold">Open</span> come on down'
@@ -105,7 +105,7 @@ if (contactForm) {
     }
 
     else {
-      const receiveEmail = "carclubtire@gmail.com";
+      const receiveEmail = "swietonautomotive@gmail.com";
       // Compose email message
       const subject = `[Contact-Form] ${nameInput.value}`;
       const body = `${messageInput.value}\n\n${nameInput.value}\n${emailInput.value}`;

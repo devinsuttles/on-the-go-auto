@@ -2,33 +2,8 @@
 const serviceSlidesData = [
   {
     icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Tire Work`,
-    body: `Whether you need tire repairs or replacements, our skilled technicians are here to keep your wheels rolling safely and smoothly.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `New & Used Tire`,
-    body: `We offer a selection of high-quality new and used tires that provide excellent performance and value for your vehicle.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Tire Disposal`,
-    body: `As part of our commitment to eco-friendly practices, we can dispose of your unsuable tires responsibly for a nominal fee.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
     title: `Patch & Plug`,
     body: `Our professional tire patching service restores damaged tires to safe conditions, saving you from the cost of replacement.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `TPMS & Install`,
-    body: `Our technicians can install and service Tire Pressure Monitoring System (TPMS) sensors to keep you informed about your tire pressure.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Wheel Alignment`,
-    body: `Improve handling and tire longevity with precision wheel alignment, ensuring all wheels are correctly oriented.`,
   },
   {
     icon: `<i class="bx bxs-car-mechanic"></i>`,

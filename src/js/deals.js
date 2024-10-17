@@ -43,11 +43,6 @@ const dealsSlidesData = [
     body: `Enhance your vehicle's safety with our limited-time brake pads deal! Expert replacements, special pricing. Act now, drive confidently!`,
   },
   {
-    icon: `<i class="icon bx bx-color display-6"></i>`,
-    title: `Wheel Alignment starting at just $49.99`,
-    body: `Wheel alignment for $49.99 & up! Limited time offer. Improved handling and fuel efficiency. Visit us today!`,
-  },
-  {
     icon: `<i class="icon bx bxs-wrench display-6"></i>`,
     title: `Full Tune Up Starting from just $249.99`,
     body: `Tune up starting at just $249.99! Limited time offer. Optimize performance and reliability. Visit us today!`,

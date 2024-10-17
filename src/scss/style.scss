@@ -4,12 +4,12 @@
 @use "./variables" as v;
 
 // defaults
-@import "./base";
-@import "./navigation";
-@import "./components";
+@use "./base";
+@use "./navigation";
+@use "./components";
 // sections
-@import "./hero";
-@import "./deals";
-@import "./whyus";
-@import "./testimonials";
-@import "./contactus";
+@use "./hero";
+@use "./deals";
+@use "./whyus";
+@use "./testimonials";
+@use "./contactus";

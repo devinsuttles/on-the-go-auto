@@ -18,12 +18,6 @@ a {
   padding: 2rem 0;
   /* scroll-snap-align: start; */
 }
-.section:nth-child(even) {
-  background-color: v.$even-bg;
-}
-.section:nth-child(odd) {
-  background-color: v.$odd-bg;
-}
 
 .heading-container {
   margin-bottom: 1.5rem;
@@ -52,7 +46,6 @@ a {
   display: block;
   width: 80px;
   height: 3px;
-  background: v.$primary;
   bottom: 0;
   left: calc(50% - 40px);
 }

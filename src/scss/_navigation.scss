@@ -15,7 +15,7 @@
 .dark .site-header {
   background-color: rgba(55, 65, 98, 0.95);
   padding-top: 0;
-  border-bottom: 1px solid v.$primary;
+  border-bottom: 1px solid;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
 }
 
@@ -68,8 +68,6 @@ ul.primary-menu {
 }
 
 .primary-menu .menu-item  {
-  color: v.$light;
-  text-shadow: v.$text-shadow;
   font-size: .875rem;
   font-weight: 500;
   line-height: 76px;
@@ -81,12 +79,7 @@ ul.primary-menu {
 }
 
 .dark .primary-menu .menu-item:has(a.active) {
-  border-bottom: 1px solid v.$secondary;
-}
-
-.primary-menu a.active,
-.primary-menu a:hover {
-  color: v.$secondary;
+  border-bottom: 1px solid;
 }
 
 
@@ -112,7 +105,6 @@ ul.primary-menu {
 
   nav.nav-primary {
     max-height: 0;
-    transition: v.$transition;
     overflow: hidden;
     position: relative;
   }
@@ -130,7 +122,7 @@ ul.primary-menu {
   .site-header {
     background-color: rgba(55, 65, 98, 0.95);
     padding-top: 0;
-    border-bottom: 1px solid v.$primary;
+    border-bottom: 1px solid;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
   }
   .site-title > a,
@@ -141,7 +133,6 @@ ul.primary-menu {
   .menu-toggle {
     background: transparent;
     border-width: 0;
-    color: v.$light;
     cursor: pointer;
     display: block !important;
     margin-top: 2px;
@@ -176,7 +167,6 @@ ul.primary-menu {
     padding: 5px;
     text-rendering: auto;
     transform: rotateX(0);
-    transition: v.$transition;
   }
 
   .menu-toggle.activated::before {

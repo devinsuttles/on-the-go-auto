@@ -2,10 +2,6 @@
   overflow: hidden;
   position: relative;
 
-  &:hover {
-    box-shadow: v.$box-shadow;
-  }
-
   &:hover .ag-courses-item_bg {
     transform: scale(10);
   }
@@ -31,7 +27,6 @@
   top: -75px;
   right: -75px;
   border-radius: 50%;
-  transition: v.$transition;
 }
 .glide-deals li.glide__slide:nth-child(2n) > .ag-courses_item > .ag-courses-item_bg {
   background-color: #3ecd5e;
@@ -47,10 +42,4 @@
 }
 .glide-deals li.glide__slide:nth-child(6n) > .ag-courses_item > .ag-courses-item_bg {
   background-color: #4c49ea;
-}
-
-
-//////////////////////////////////////////
-.alert-heading:hover {
-  box-shadow: v.$box-shadow;
 }

@@ -53,7 +53,7 @@ if (contactForm) {
   const nameInput = document.querySelector('#' + formId + ' #contact-form-name');
   const emailInput = document.querySelector('#' + formId + ' #contact-form-email');
   const messageInput = document.querySelector('#' + formId + ' #contact-form-message');
-  // const button = document.querySelector('#' + formId + ' #form-submit-button');
+  const phoneNumberInput = document.querySelector('#' + formId + ' #contact-form-number');
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -108,7 +108,7 @@ if (contactForm) {
       const receiveEmail = "swietonautomotive@gmail.com";
       // Compose email message
       const subject = `[Contact-Form] ${nameInput.value}`;
-      const body = `${messageInput.value}\n\n${nameInput.value}\n${emailInput.value}`;
+      const body = `${messageInput.value}\n\n${emailInput.value} | ${phoneNumberInput.value}`;
       // Open default email app and fill in appropriate fields
       const mailtoUrl = `mailto:${encodeURIComponent(
         receiveEmail

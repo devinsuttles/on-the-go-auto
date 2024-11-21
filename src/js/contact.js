@@ -29,7 +29,7 @@ function storeStatus() {
     (dayOfWeek !== "Sunday" && hours >= 8 && hours < 17);
 
   const outputTime = isOpeningHours
-    ? '<span class="open text-success fw-bold">Open</span> come on down'
+    ? '<span class="open text-success fw-bold">Open</span>!'
     : '<span class="closed text-danger fw-bold">Closed</span> see you tomorrow. 🙂';
 
   return `${outputDay}, We are ${outputTime}`;

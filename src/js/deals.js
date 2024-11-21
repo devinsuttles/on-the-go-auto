@@ -30,7 +30,7 @@ const dealsSlidesData = [
   {
     icon: `<i class="icon bx bxs-car-wash display-6"></i>`,
     title: `Synthetic Oil Change for just $100.00`,
-    body: `Get your car running smoothly with our oil change specials! Synthetic oil change for $89.99. Quality service at great prices!`,
+    body: `Get your car running smoothly with our oil change specials! Synthetic oil change for $100.00 Quality service at great prices!`,
   },
   {
     icon: `<i class="icon bx bxs-car-wash display-6"></i>`,

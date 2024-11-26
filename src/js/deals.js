@@ -7,10 +7,12 @@ const alertBoxesData = [
     body: 'We offer competive pricing.',
   },
 ];
+
 const alertBoxHtml = alertBoxesData.map((bx) => {
   const body = bx.body ? bx.body : ``
   return `<li>${body}</li>`
 });
+
 const alertBoxesElement = document.querySelector("#alert-boxes .card-body");
 
 if (alertBoxesElement) 
@@ -18,19 +20,17 @@ if (alertBoxesElement)
   alertBoxesElement.innerHTML = alertBoxHtml.join("");
 }
 
-
-
 // Setup Deals Slides
 const dealsSlidesData = [
   {
     icon: `<i class="icon bx bx-wind display-6"></i>`,
-    title: `AC System Flush, Vacuum & Recharge Freon for $119.99!`,
-    body: `Beat the heat with our top-notch service! Get an AC System Flush, Vacuum, and Recharge Freon for just $119.99.`,
+    title: `AC System Flush, Vacuum & Recharge Freon for $129.99!`,
+    body: `Beat the heat with our top-notch service! Get an AC System Flush, Vacuum, and Recharge Freon for just $129.99.`,
   },
   {
     icon: `<i class="icon bx bxs-car-wash display-6"></i>`,
-    title: `Synthetic Oil Change for just $100.00`,
-    body: `Get your car running smoothly with our oil change specials! Synthetic oil change for $100.00 Quality service at great prices!`,
+    title: `Synthetic Oil Change for just $99.99`,
+    body: `Get your car running smoothly with our oil change specials! Synthetic oil change for $99.99 Quality service at great prices!`,
   },
   {
     icon: `<i class="icon bx bxs-car-wash display-6"></i>`,
@@ -39,25 +39,21 @@ const dealsSlidesData = [
   },
   {
     icon: `<i class="icon bx bx-stop-circle display-6"></i>`,
-    title: `Brake Pads starting at just $79.99`,
+    title: `Brake Pads starting at just $129.99`,
     body: `Enhance your vehicle's safety with our limited-time brake pads deal! Expert replacements, special pricing. Act now, drive confidently!`,
   },
   {
     icon: `<i class="icon bx bxs-wrench display-6"></i>`,
-    title: `Full Tune Up Starting from just $249.99`,
-    body: `Tune up starting at just $249.99! Limited time offer. Optimize performance and reliability. Visit us today!`,
+    title: `Full Tune Up Starting from just $299.99`,
+    body: `Tune up starting at just $299.99! Limited time offer. Optimize performance and reliability. Visit us today!`,
   },
   {
     icon: `<i class="icon bx bxs-car-garage display-6"></i>`,
-    title: `FREE Check Engine Light diagnostics.`,
-    body: `Worried about your check engine light? Get a FREE diagnostic from our expert technicians and drive with confidence!`,
-  },
-  {
-    icon: `<i class="icon bx bxs-car-garage display-6"></i>`,
-    title: `Free Vehicle Inspection with any service.`,
-    body: `Comprehensive vehicle inspection for FREE with any service! Limited time offer. Visit us today!`,
-  },
+    title: `Heat not working? Check engine light on?`,
+    body: `Get a comprhensive inspection for $119.99 from our expert technicians and drive with confidence!`,
+  }
 ];
+
 const dealsSlidesHtml = dealsSlidesData.map((sl) => {
   const output =
     `<li class="glide__slide h-auto">`+
@@ -72,6 +68,7 @@ const dealsSlidesHtml = dealsSlidesData.map((sl) => {
     `</li>`
   return output
 });
+
 const dealsSlidesElement = document.getElementById("deals-slides")
 
 if (dealsSlidesElement) 

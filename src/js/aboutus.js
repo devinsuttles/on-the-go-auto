@@ -2,11 +2,6 @@
 const serviceSlidesData = [
   {
     icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Patch & Plug`,
-    body: `Our professional tire patching service restores damaged tires to safe conditions, saving you from the cost of replacement.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
     title: `A/C Recharge & Dye`,
     body: `Stay cool during hot days with our A/C recharge service using the best refrigerant and dye for leak detection.`,
   },
@@ -55,7 +50,13 @@ const serviceSlidesData = [
     title: `Check engine light diagnosis`,
     body: `Is your check engine light on? Don't worry! Our skilled technicians specialize in check engine light diagnosis.`,
   },
+  {
+    icon: `<i class="bx bxs-car-mechanic"></i>`,
+    title: `Don’t see a service you need?`,
+    body: `Give us a call today!`,
+  }
 ];
+
 const slideBoxesHtml = serviceSlidesData.map((sl) => {
   const body = sl.body ? sl.body : ``;
   const icon = sl.icon ? sl.icon : ``;
@@ -71,5 +72,8 @@ const slideBoxesHtml = serviceSlidesData.map((sl) => {
     </li>`;
   return output;
 });
+
 const slideBoxesElement = document.getElementById("service-slides");
-if (slideBoxesElement) slideBoxesElement.innerHTML = slideBoxesHtml.join("");
+
+if (slideBoxesElement) 
+  slideBoxesElement.innerHTML = slideBoxesHtml.join("");

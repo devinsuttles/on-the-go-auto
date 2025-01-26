@@ -1,60 +1,20 @@
+// Function to create a service slide object
+const createServiceSlide = (icon, title, body) => ({
+  icon: `<i class="bx ${icon}"></i>`,
+  title,
+  body,
+});
+
 // Setup Services Slides
 const serviceSlidesData = [
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `A/C Recharge & Dye`,
-    body: `Stay cool during hot days with our A/C recharge service using the best refrigerant and dye for leak detection.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Oil Change & Filter`,
-    body: `Keep your engine running smoothly and efficiently with our oil change service, including a new filter installation.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Front & Rear Brake Pads`,
-    body: `Ensure reliable stopping power with our front and rear brake pad replacement, using top-quality brake pads for safety and performance.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `New Battery`,
-    body: `If it's time for a new battery, trust our experts to install a reliable and durable replacement for your vehicle.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Wiper Blades`,
-    body: `Improve visibility during rain or snow with new wiper blades that fit your vehicle perfectly.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Cabin Air Filters`,
-    body: `Breathe clean air inside your car with our cabin air filter replacement service.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Suspension & Steering`,
-    body: `Experience smoother rides and enhanced handling with our expert suspension and steering services with us. Drive with confidence.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Exhaust System repairing`,
-    body: `Experience smoother rides and enhanced handling with expert suspension and steering services. visit us today!`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Car electrical system repairs`,
-    body: `For reliable car electrical system repairs, trust our experienced technicians. Drive worry-free with our top-notch service.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Check engine light diagnosis`,
-    body: `Is your check engine light on? Don't worry! Our skilled technicians specialize in check engine light diagnosis.`,
-  },
-  {
-    icon: `<i class="bx bxs-car-mechanic"></i>`,
-    title: `Don’t see a service you need?`,
-    body: `Give us a call today!`,
-  }
+  createServiceSlide('bxs-car-mechanic', 'A/C Recharge & Dye', 'Stay cool during hot days with our A/C recharge service using the best refrigerant and dye for leak detection.'),
+  createServiceSlide('bxs-car-mechanic', 'Oil Change & Filter', 'Keep your engine running smoothly and efficiently with our oil change service, including a new filter installation.'),
+  createServiceSlide('bxs-car-mechanic', 'Front & Rear Brake Pads', 'Ensure reliable stopping power with our front and rear brake pad replacement, using top-quality brake pads for safety and performance.'),
+  createServiceSlide('bxs-car-mechanic', 'New Battery', 'If it\'s time for a new battery, trust our experts to install a reliable and durable replacement for your vehicle.'),
+  createServiceSlide('bxs-car-mechanic', 'Wiper Blades', 'Improve visibility during rain or snow with new wiper blades that fit your vehicle perfectly.'),
+  createServiceSlide('bxs-car-mechanic', 'Cabin Air Filters', 'Breathe clean air inside your car with our cabin air filter replacement service.'),
+  createServiceSlide('bxs-car-mechanic', 'Suspension & Steering', 'Experience smoother rides and enhanced handling with our expert suspension and steering services. Drive with confidence.'),
+  createServiceSlide('bxs-car-mechanic', 'Exhaust System Repairing', 'Get your exhaust system repaired by our experts for a smoother and quieter ride. Visit us today!'),
 ];
 
 const slideBoxesHtml = serviceSlidesData.map((sl) => {

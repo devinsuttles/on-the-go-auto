@@ -1,24 +1,17 @@
+// Function to create an alert box object
+const createAlertBox = (url, img, name, body) => ({
+  url,
+  img,
+  name,
+  body,
+});
+
 // Setup Alert Boxes
 const alertBoxesData = [
-  {
-    url: `https://www.facebook.com/profile.php?id=61563832693551&sk=reviews`,
-    img: false,
-    name: `Jacqueline Winne`,
-    body: `Absolutely love On the Go auto! Aaron and John are very professional, helpful & kind! They make it easy to schedule in vehicle maintenance & work!`,
-  },
-  {
-    url: `https://www.facebook.com/profile.php?id=61563832693551&sk=reviews`,
-    img: false,
-    name: `Dylan Brady`,
-    body: `One of the best dudes you will find, they have personally worked on my car, gave me peace of mind and told me to relax and I got to skip the scary idea of a mechanic not caring about my car, they treat you like family.`,
-  },
-  {
-    url: 'https://www.facebook.com/profile.php?id=100095312300533&sk=reviews',
-    img: false,
-    name: 'Jamie A Barrett',
-    body: 'Responded quickly and was able to work on my car almost immediately. Aaron diagnosed the issue with my car and resolved it. I will be reaching out to him again in the future!',
-  }
-]
+  createAlertBox('https://www.facebook.com/profile.php?id=61563832693551&sk=reviews', false, 'Jacqueline Winne', 'Absolutely love On the Go auto! Aaron and John are very professional, helpful & kind! They make it easy to schedule in vehicle maintenance & work!'),
+  createAlertBox('https://www.facebook.com/profile.php?id=61563832693551&sk=reviews', false, 'Dylan Brady', 'One of the best dudes you will find, they have personally worked on my car, gave me peace of mind and told me to relax and I got to skip the scary idea of a mechanic not caring about my car, they treat you like family.'),
+  createAlertBox('https://www.facebook.com/profile.php?id=100095312300533&sk=reviews', false, 'Jamie A Barrett', 'Responded quickly and was able to work on my car almost immediately. Aaron diagnosed the issue with my car and resolved it. I will be reaching out to him again in the future!'),
+];
 
 const aletBoxHtml = alertBoxesData.map((rv) => {
   const avatar = rv.img

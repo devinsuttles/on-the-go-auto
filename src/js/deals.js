@@ -20,38 +20,19 @@ if (alertBoxesElement)
   alertBoxesElement.innerHTML = alertBoxHtml.join("");
 }
 
+const createDealsSlide = (icon, title, body) => ({
+  icon: `<i class="bx ${icon}"></i>`,
+  title,
+  body,
+});
+
 // Setup Deals Slides
 const dealsSlidesData = [
-  {
-    icon: `<i class="icon bx bx-wind display-6"></i>`,
-    title: `AC System Flush, Vacuum & Recharge Freon for $129.99!`,
-    body: `Beat the heat with our top-notch service! Get an AC System Flush, Vacuum, and Recharge Freon for just $129.99.`,
-  },
-  {
-    icon: `<i class="icon bx bxs-car-wash display-6"></i>`,
-    title: `Synthetic Oil Change for just $99.99`,
-    body: `Get your car running smoothly with our oil change specials! Synthetic oil change for $99.99 Quality service at great prices!`,
-  },
-  {
-    icon: `<i class="icon bx bxs-car-wash display-6"></i>`,
-    title: `Conventional Oil Change for just $69.99`,
-    body: `Get your car running smoothly with our oil change specials! Conventional oil change for $69.99. Quality service at great prices!`,
-  },
-  {
-    icon: `<i class="icon bx bx-stop-circle display-6"></i>`,
-    title: `Brake Pads starting at just $129.99`,
-    body: `Enhance your vehicle's safety with our limited-time brake pads deal! Expert replacements, special pricing. Act now, drive confidently!`,
-  },
-  {
-    icon: `<i class="icon bx bxs-wrench display-6"></i>`,
-    title: `Full Tune Up Starting from just $299.99`,
-    body: `Tune up starting at just $299.99! Limited time offer. Optimize performance and reliability. Visit us today!`,
-  },
-  {
-    icon: `<i class="icon bx bxs-car-garage display-6"></i>`,
-    title: `Heat not working? Check engine light on?`,
-    body: `Get a comprhensive inspection for $119.99 from our expert technicians and drive with confidence!`,
-  }
+  createDealsSlide('bx-wind display-6', 'AC System Flush, Vacuum & Recharge Freon for $129.99!', 'Beat the heat with our top-notch service! Get an AC System Flush, Vacuum, and Recharge Freon for just $129.99.'),
+  createDealsSlide('bxs-car-wash display-6', 'Synthetic Oil Change for just $99.99', 'Get your car running smoothly with our oil change specials! Synthetic oil change for $99.99 Quality service at great prices!'),
+  createDealsSlide('bxs-car-wash display-6', 'Conventional Oil Change for just $69.99', 'Get your car running smoothly with our oil change specials! Conventional oil change for $69.99. Quality service at great prices!'),
+  createDealsSlide('bx-stop-circle display-6', 'Brake Pads starting at just $129.99', 'Enhance your vehicle\'s safety with our limited-time brake pads deal! Expert replacements, special pricing. Act now, drive confidently!'),
+  createDealsSlide('bxs-wrench display-6', 'Full Tune Up Starting from just $299.99', 'Tune up starting at just $299.99! Limited time offer. Optimize performance and reliability. Visit us today!'),
 ];
 
 const dealsSlidesHtml = dealsSlidesData.map((sl) => {

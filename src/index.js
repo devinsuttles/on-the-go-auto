@@ -1,13 +1,9 @@
-// BOOTSTRAP
-// import "./scss/bs-dynamic.scss"
+// Stylesheets
 import "./css/bs-compiled.css"
-// STYLES
 import "./scss/style.scss"
-// BOX Icons
 import "boxicons/css/boxicons.css"
 
-
-// Sections
+// Page sections
 import "./js/header.js"
 import "./js/deals.js"
 import "./js/whyus.js"
@@ -16,8 +12,8 @@ import "./js/testimonials.js"
 import "./js/contact.js"
 import "./js/footer.js"
 
-// GlideJs
+// Third-party libraries
 import "./js/glide.js"
 
-// hide preloader
+// Utilities
 import "./js/hidepreloader.js"

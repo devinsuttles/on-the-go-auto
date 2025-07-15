@@ -1,25 +1,4 @@
-// Setup Alert Boxes
-const alertBoxesData = [
-  {
-    body: `Special Discounts for Veterans & Military Personel, Students, and Senior Citizens.`,
-  },
-  {
-    body: 'We offer competive pricing.',
-  },
-];
-
-const alertBoxHtml = alertBoxesData.map((bx) => {
-  const body = bx.body ? bx.body : ``
-  return `<li>${body}</li>`
-});
-
-const alertBoxesElement = document.querySelector("#alert-boxes .card-body");
-
-if (alertBoxesElement) 
-{
-  alertBoxesElement.innerHTML = alertBoxHtml.join("");
-}
-
+// Deals Slider Setup
 const createDealsSlide = (icon, title, body) => ({
   icon: `<i class="bx ${icon}"></i>`,
   title,

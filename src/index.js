@@ -1,7 +1,7 @@
 // Stylesheets
 import "./css/bs-compiled.css"
 import "./scss/style.scss"
-import "boxicons/css/boxicons.css"
+import "../node_modules/boxicons/css/boxicons.css"
 
 // Page sections
 import "./js/header.js"

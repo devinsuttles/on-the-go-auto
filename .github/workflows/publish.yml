@@ -17,14 +17,14 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm run build # The build command of your project
+        run: npm run build
 
       - name: Push
         uses: s0/git-publish-subdir-action@develop
         with:
-          repo: devinsuttles/on-the-go-auto # Your repository name
-          branch: build # The branch name where you want to push the assets
-          folder: build # The directory where your assets are generated
-          message: "Build: ({sha}) {msg}" # The commit message
+          repo: devinsuttles/on-the-go-auto
+          branch: build
+          folder: build
+          message: "Build: ({sha}) {msg}"
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # GitHub will automatically add this - you don't need to bother getting a token
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

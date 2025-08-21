@@ -1,7 +1,4 @@
 // Glide.js
-import "@glidejs/glide/dist/css/glide.core.min.css";
-import "@glidejs/glide/dist/css/glide.theme.min.css";
-
 import Glide from "@glidejs/glide";
 
 new Glide(".glide-deals", {

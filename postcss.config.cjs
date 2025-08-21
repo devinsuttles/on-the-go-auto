@@ -1,6 +1,6 @@
-// const autoprefixer = require("autoprefixer");
-// const cssnano = require('cssnano');
-// const purgecss = require("@fullhuman/postcss-purgecss");
+const autoprefixer = require("autoprefixer");
+const cssnano = require('cssnano');
+const { purgeCSSPlugin } = require("@fullhuman/postcss-purgecss");
 const IN_PRODUCTION = process.env.NODE_ENV === "production";
 const bootstrap = "node_modules/bootstrap"
 
@@ -8,7 +8,7 @@ const bootstrap = "node_modules/bootstrap"
 module.exports = {
   plugins: [
     IN_PRODUCTION &&
-    require("@fullhuman/postcss-purgecss")({
+    purgeCSSPlugin({
       content: [
         "index.html",
         "./src/**/*.js",
@@ -48,10 +48,10 @@ module.exports = {
       // ],
     }),
 
-    IN_PRODUCTION && require("autoprefixer"),
+    IN_PRODUCTION && autoprefixer,
 
     IN_PRODUCTION &&
-      require("cssnano")({
+      cssnano({
         preset: ["default", { discardComments: { removeAll: true } }],
       }),
   ],

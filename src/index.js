@@ -1,8 +1,3 @@
-// Stylesheets
-import "./css/bs-compiled.css"
-import "./scss/style.scss"
-import "./css/boxicons.css"
-
 // Page sections
 import "./js/header.js"
 import "./js/deals.js"

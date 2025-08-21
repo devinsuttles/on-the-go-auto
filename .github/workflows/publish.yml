@@ -22,7 +22,7 @@ jobs:
       - name: Push
         uses: s0/git-publish-subdir-action@develop
         with:
-          repo: self
+          repo: devinsuttles/on-the-go-auto # Your repository name
           branch: build # The branch name where you want to push the assets
           folder: build # The directory where your assets are generated
           message: "Build: ({sha}) {msg}" # The commit message

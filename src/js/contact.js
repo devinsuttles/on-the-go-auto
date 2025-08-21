@@ -25,8 +25,7 @@ function storeStatus() {
     weekday: "long",
   });
   const isOpeningHours =
-    (dayOfWeek === "Sunday" && hours >= 9 && hours < 17) ||
-    (dayOfWeek !== "Sunday" && hours >= 8 && hours < 17);
+    (dayOfWeek !== "Saturday" && dayOfWeek !== "Sunday" && hours >= 8 && hours < 17);
 
   const outputTime = isOpeningHours
     ? '<span class="open text-success fw-bold">Open</span>!'
@@ -42,79 +41,28 @@ function updateStatusRealtime() {
 updateStatusRealtime();
 setInterval(updateStatusRealtime, 15000);
 
-
-
-// JavaScript form submission
-import "bootstrap/js/dist/alert.js";
-const formId = 'homepage-contact-form';
-const contactForm = document.getElementById(formId);
-if (contactForm) {
-
-  const nameInput = document.querySelector('#' + formId + ' #contact-form-name');
-  const emailInput = document.querySelector('#' + formId + ' #contact-form-email');
-  const messageInput = document.querySelector('#' + formId + ' #contact-form-message');
-  const phoneNumberInput = document.querySelector('#' + formId + ' #contact-form-number');
-
-  const validateEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
+// Calendly Widget
+function calendlyWidget() {
+  const calendlyContainer = document.getElementById('calendly-widget');
+  if (calendlyContainer) {
+    // Create Calendly inline widget
+    const calendlyDiv = document.createElement('div');
+    calendlyDiv.className = 'calendly-inline-widget';
+    calendlyDiv.setAttribute('data-url', 'https://calendly.com/swietonautomotive/service');
+    calendlyDiv.style.minWidth = '320px';
+    calendlyDiv.style.height = '700px';
+    
+    // Add the widget to the container
+    calendlyContainer.appendChild(calendlyDiv);
+    
+    // Load Calendly script
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.head.appendChild(script);
   }
-
-  // Error Alerts
-  const alertPlaceholder = document.querySelector('#' + formId + ' #errorAlerts');
-  const appendAlert = message => {
-    alertPlaceholder.innerHTML = [
-      `<div class="alert alert-danger alert-dismissible" role="alert">`,
-      `<div>${message}</div>`,
-      '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-      '</div>'
-    ].join('')
-  }
-
-  const validateForm = () => {
-    if (nameInput.value.trim() === '') {
-      appendAlert('Please enter your name');
-      return false;
-    }
-    if (emailInput.value.trim() === '' || !validateEmail(emailInput.value)) {
-      // alert('Please enter a valid email address.');
-      appendAlert('Please enter a valid email address.');
-      return false;
-    }
-    if (messageInput.value.trim() === '') {
-      appendAlert('Please enter a message.');
-      return false;
-    }
-    return true;
-  }
-
-  contactForm.addEventListener("submit", function (event) {
-    // Prevent default form submission
-    event.preventDefault();
-
-    // Remove previous alerts
-    const alertDismiss = this.querySelectorAll('#' + formId + ' #errorAlerts > *');
-    if (alertDismiss) {
-      alertDismiss.forEach(e => {
-        e.remove();
-      });
-    };
-
-    if (!validateForm()) {
-      return false;
-    }
-
-    else {
-      const receiveEmail = "swietonautomotive@gmail.com";
-      // Compose email message
-      const subject = `[Contact-Form] ${nameInput.value}`;
-      const body = `${messageInput.value}\n\n${emailInput.value} | ${phoneNumberInput.value}`;
-      // Open default email app and fill in appropriate fields
-      const mailtoUrl = `mailto:${encodeURIComponent(
-        receiveEmail
-      )}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      // Open Email client on click
-      window.open(mailtoUrl);
-    }
-  });
 }
+
+// Initialize Calendly widget when DOM is loaded
+document.addEventListener('DOMContentLoaded', calendlyWidget);

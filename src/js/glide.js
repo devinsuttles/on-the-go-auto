@@ -1,5 +1,5 @@
 // Glide.js
-import Glide from "@glidejs/glide";
+import Glide from "./glide-lib.js";
 
 new Glide(".glide-deals", {
   type: "carousel",

@@ -24,6 +24,7 @@
   "dependencies": {
     "@glidejs/glide": "^3.6.2",
     "boxicons": "^2.1.4",
-    "caniuse-lite": "^1.0.30001669"
+    "caniuse-lite": "^1.0.30001669",
+    "react-calendly": "^4.4.0"
   }
 }

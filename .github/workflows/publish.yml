@@ -1,4 +1,4 @@
-name: Generate a build and push to another branch
+name: Build and Deploy to Hostinger
 
 on:
   push:
@@ -6,25 +6,23 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    name: Build and Push
     steps:
-      - name: git-checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install all dependencies
+      - name: Install dependencies
         run: npm install
 
       - name: Build
         run: npm run build
 
-      - name: Push
-        uses: s0/git-publish-subdir-action@develop
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4
         with:
-          repo: devinsuttles/on-the-go-auto
-          branch: build
-          folder: build
-          message: "Build: ({sha}) {msg}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          server: ${{ HOSTINGER_FTP_SERVER }} 
+          username: ${{ HOSTINGER_FTP_USERNAME }}
+          password: ${{ HOSTINGER_FTP_PASSWORD }}
+          local-dir: build
+          server-dir: /public_html/

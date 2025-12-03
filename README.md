@@ -59,6 +59,21 @@ npm run dev
 npm run build
 ```
 
+### Run unit tests:
+```bash
+npm test
+```
+
+### Run unit tests with UI:
+```bash
+npm run test:ui
+```
+
+### Run unit tests with coverage:
+```bash
+npm run test:coverage
+```
+
 ### Git commit, bump patch version and Git push all in one command:
 ```bash
 npm run push

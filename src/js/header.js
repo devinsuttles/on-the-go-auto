@@ -6,9 +6,9 @@ const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("nav.nav-primary");
 
 // Functionality for main menu-toggle button
-menuButton.addEventListener("click", function () {
+menuButton?.addEventListener("click", function () {
   // Show site navigation
-  navigation.classList.toggle("show");
+  navigation?.classList.toggle("show");
 
   // toggle activated class
   menuButton.classList.toggle("activated");
@@ -38,13 +38,13 @@ const menuLinks = document.querySelectorAll(
 menuLinks.forEach((eachLink) => {
   eachLink.addEventListener("click", function () {
     // Hide Main Navigation on click
-    navigation.classList.remove("show");
+    navigation?.classList.remove("show");
 
     // remove activated class and attrs from menu-toggle button
-    menuButton.classList.remove("activated");
-    menuButton.classList.remove("bx-x");
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-pressed", "false");
+    menuButton?.classList.remove("activated");
+    menuButton?.classList.remove("bx-x");
+    menuButton?.setAttribute("aria-expanded", "false");
+    menuButton?.setAttribute("aria-pressed", "false");
   });
 });
 

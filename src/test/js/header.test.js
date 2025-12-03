@@ -4,14 +4,17 @@ describe('Header Module', () => {
   let dom;
 
   beforeEach(() => {
+    // Reset modules to ensure fresh imports
+    vi.resetModules();
+
     // Reset DOM completely
     document.body.innerHTML = '';
-    
+
     // Reset window properties
     window.scrollY = 0;
     window.innerHeight = 768;
     window.onscroll = null;
-    
+
     // Create standard DOM structure for testing
     dom = createNavigationDOM();
   });
@@ -158,6 +161,7 @@ describe('Header Module', () => {
   describe('Menu Collapse on Link Click', () => {
     it('should collapse menu when menu links are clicked', async () => {
       await import('../../js/header.js');
+      await new Promise(resolve => setTimeout(resolve, 0)); // ensure event listeners are attached
 
       // Open menu first
       dom.menuButton.click();

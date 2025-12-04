@@ -165,6 +165,7 @@ describe('Header Module', () => {
 
       // Open menu first
       dom.menuButton.click();
+      await new Promise(resolve => setTimeout(resolve, 0)); // ensure event listeners are attache
       expect(dom.navigation.classList.contains('show')).toBe(true);
 
       // Click a menu link

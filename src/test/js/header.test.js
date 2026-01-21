@@ -161,15 +161,19 @@ describe('Header Module', () => {
   describe('Menu Collapse on Link Click', () => {
     it('should collapse menu when menu links are clicked', async () => {
       await import('../../js/header.js');
-      // Wait for next tick to ensure event listeners are fully attached
-      await new Promise(resolve => queueMicrotask(resolve));
+      // Wait for event listeners to be fully attached
+      await new Promise(resolve => setTimeout(resolve, 10));
 
       // Open menu first
       dom.menuButton.click();
+      // Wait for DOM updates to propagate
+      await new Promise(resolve => setTimeout(resolve, 10));
       expect(dom.navigation.classList.contains('show')).toBe(true);
 
       // Click a menu link
       dom.menuLinks[0].click();
+      // Wait for DOM updates to propagate
+      await new Promise(resolve => setTimeout(resolve, 10));
 
       // Menu should be collapsed
       expect(dom.navigation.classList.contains('show')).toBe(false);

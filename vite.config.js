@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import webfontDownload from "vite-plugin-webfont-dl";
 import { ViteMinifyPlugin } from "vite-plugin-minify";
-import jscrambler from "vite-plugin-javascript-obfuscator";
+import javascriptObfuscator from "vite-plugin-javascript-obfuscator";
 const IN_PRODUCTION = process.env.NODE_ENV === "production";
 const IN_DEVELOPMENT = process.env.NODE_ENV === "development";
 
@@ -39,7 +39,7 @@ export default defineConfig({
 
     /* ## Obfuscate JavaScript in production using javascript-obfuscator (open source)
     --------------------------------------------- */
-    IN_PRODUCTION && jscrambler({
+    IN_PRODUCTION && javascriptObfuscator({
       options: {
         compact: true,
         controlFlowFlattening: true,

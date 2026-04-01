@@ -1,6 +1,6 @@
 const autoprefixer = require("autoprefixer");
 const cssnano = require('cssnano');
-const { purgeCSSPlugin } = require("@fullhuman/postcss-purgecss");
+const purgeCSSPlugin = require("@fullhuman/postcss-purgecss");
 const IN_PRODUCTION = process.env.NODE_ENV === "production";
 const bootstrap = "node_modules/bootstrap"
 

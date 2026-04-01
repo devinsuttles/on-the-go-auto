@@ -14,24 +14,24 @@
     "bs-static": "sass --no-source-map ./src/scss/bs-dynamic.scss ./src/css/bs-compiled.css"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "@fullhuman/postcss-purgecss": "^8.0.0",
     "@vitest/ui": "^3.2.4",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.27",
     "bootstrap": "^5.3.3",
-    "cssnano": "^7.1.0",
-    "jsdom": "^27.0.0",
-    "postcss": "^8.4.47",
-    "sass": "^1.80.0",
+    "cssnano": "^7.1.4",
+    "jsdom": "^29.0.1",
+    "postcss": "^8.5.8",
+    "sass": "^1.98.0",
     "vite": "^7.1.3",
     "vite-plugin-javascript-obfuscator": "^3.1.0",
     "vite-plugin-minify": "^2.1.0",
-    "vite-plugin-webfont-dl": "^3.9.5",
+    "vite-plugin-webfont-dl": "^3.12.0",
     "vitest": "^3.2.4"
   },
   "dependencies": {
     "@glidejs/glide": "^3.6.2",
     "boxicons": "^2.1.4",
-    "caniuse-lite": "^1.0.30001669",
+    "caniuse-lite": "^1.0.30001782",
     "react-calendly": "^4.4.0"
   }
 }

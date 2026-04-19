@@ -1,46 +1,25 @@
 // Navigation
-/* ## Set Mobile Navigation stuff
---------------------------------------------- */
-// selecting the element
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector("nav.nav-primary");
+const body = document.querySelector("body");
+const mainSections = document.querySelectorAll("main.entry-content section.section");
 
-// Functionality for main menu-toggle button
 menuButton?.addEventListener("click", function () {
-  // Show site navigation
   navigation?.classList.toggle("show");
-
-  // toggle activated class
   menuButton.classList.toggle("activated");
   menuButton.classList.toggle("bx-x");
 
-  // toggle attrs
-  if (menuButton.getAttribute("aria-expanded") === "true") {
-    menuButton.setAttribute("aria-expanded", "false");
-  } else {
-    menuButton.setAttribute("aria-expanded", "true");
-  }
-
-  if (menuButton.getAttribute("aria-pressed") === "true") {
-    menuButton.setAttribute("aria-pressed", "false");
-  } else {
-    menuButton.setAttribute("aria-pressed", "true");
-  }
-
-  // Show Main Navigation
+  const expanded = menuButton.getAttribute("aria-expanded") === "true";
+  menuButton.setAttribute("aria-expanded", String(!expanded));
+  menuButton.setAttribute("aria-pressed", String(!expanded));
 });
 
-// Collapse menu on click
 const menuLinks = document.querySelectorAll(
   ".primary-menu .menu-item a, a.top-link, .site-title a"
 );
-// Functionality of individual links
 menuLinks.forEach((eachLink) => {
   eachLink.addEventListener("click", function () {
-    // Hide Main Navigation on click
     navigation?.classList.remove("show");
-
-    // remove activated class and attrs from menu-toggle button
     menuButton?.classList.remove("activated");
     menuButton?.classList.remove("bx-x");
     menuButton?.setAttribute("aria-expanded", "false");
@@ -48,25 +27,10 @@ menuLinks.forEach((eachLink) => {
   });
 });
 
-/* ## Add dark claass to the header and top link
---------------------------------------------- */
-window.addEventListener("scroll", () => {
-  if (window.scrollY >= 100) {
-    document.querySelector("body").classList.add("dark");
-  } else {
-    document.querySelector("body").classList.remove("dark");
-  }
-});
-
-
-
-
-
-
-/* ## SETUP SCROLL SPY
+/* ## Scroll handlers — batched reads then writes, throttled with rAF
 --------------------------------------------- */
 let menuSection = document.querySelectorAll(".nav-primary li.menu-item a");
-// for clickable event
+
 menuSection.forEach((v) => {
   v.onclick = () => {
     setTimeout(() => {
@@ -75,29 +39,35 @@ menuSection.forEach((v) => {
     }, 300);
   };
 });
-// for window scrolldown event
-window.onscroll = () => {
-  let mainSection = document.querySelectorAll(
-    "main.entry-content section.section"
-  );
 
-  mainSection.forEach((v, i) => {
-    let rect = v.getBoundingClientRect().y;
+let scrollTicking = false;
 
-    if (rect < window.innerHeight - window.innerHeight + 100) {
-      /* caculate till section reaches to top */
-      menuSection.forEach((v) => v.classList.remove("active"));
-      menuSection[i].classList.add("active");
+window.addEventListener("scroll", () => {
+  if (scrollTicking) return;
+  scrollTicking = true;
+
+  requestAnimationFrame(() => {
+    // Batch all reads first
+    const scrollY = window.scrollY;
+    const rects = Array.from(mainSections).map((v) => v.getBoundingClientRect().y);
+
+    // Then batch all writes
+    if (scrollY >= 100) {
+      body.classList.add("dark");
+    } else {
+      body.classList.remove("dark");
     }
+
+    let activeIndex = -1;
+    rects.forEach((rect, i) => {
+      if (rect < 100) activeIndex = i;
+    });
+
+    if (activeIndex >= 0) {
+      menuSection.forEach((v) => v.classList.remove("active"));
+      menuSection[activeIndex].classList.add("active");
+    }
+
+    scrollTicking = false;
   });
-};
-
-// NATIVE JAVASCRIPT WAY
-// document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-//     anchor.addEventListener('click', function (e) {
-//         e.preventDefault();
-
-//         document.querySelector(this.getAttribute('href')).scrollIntoView();
-//     });
-// });
-
+}, { passive: true });

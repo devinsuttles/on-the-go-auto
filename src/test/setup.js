@@ -45,6 +45,9 @@ Object.defineProperty(window, 'performance', {
   writable: true,
 });
 
+// Run requestAnimationFrame callbacks synchronously so scroll handler tests work
+window.requestAnimationFrame = (cb) => { cb(0); return 0; };
+
 // Reset DOM before each test
 beforeEach(() => {
   document.body.innerHTML = '';

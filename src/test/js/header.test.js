@@ -286,8 +286,8 @@ describe('Header Module', () => {
         }));
       });
 
-      // Trigger scroll spy using window.onscroll
-      window.onscroll();
+      // Trigger scroll spy
+      window.dispatchEvent(new Event('scroll'));
 
       // Second menu item should be active
       expect(menuItems[1].classList.contains('active')).toBe(true);

@@ -4,23 +4,16 @@ describe('Hide Preloader Module', () => {
   let preloader;
 
   beforeEach(async () => {
-    // Use fake timers
     vi.useFakeTimers();
 
-    // Reset DOM
     document.body.innerHTML = '';
 
-    // Create preloader element
     preloader = document.createElement('div');
     preloader.id = 'loader-wrapper';
     preloader.style.display = 'block';
     preloader.hidden = false;
     document.body.appendChild(preloader);
 
-    // Reset window.onload
-    window.onload = null;
-
-    // Clear module cache to ensure fresh import each test
     vi.resetModules();
   });
 
@@ -29,57 +22,46 @@ describe('Hide Preloader Module', () => {
     vi.clearAllTimers();
   });
 
-  describe('Basic Functionality', () => {
-    it('should set up window.onload handler', async () => {
-      await import('../../js/hidepreloader.js');
+  function triggerDOMContentLoaded() {
+    document.dispatchEvent(new Event('DOMContentLoaded'));
+  }
 
-      // Module should assign window.onload
-      expect(window.onload).toBeTruthy();
-      expect(typeof window.onload).toBe('function');
+  describe('Basic Functionality', () => {
+    it('should add hide-preloader class on DOMContentLoaded', async () => {
+      await import('../../js/hidepreloader.js');
+      triggerDOMContentLoaded();
+      expect(preloader.classList.contains('hide-preloader')).toBe(true);
     });
 
-    it('should hide preloader after 2 seconds when window loads', async () => {
+    it('should hide preloader after 600ms', async () => {
       await import('../../js/hidepreloader.js');
+      triggerDOMContentLoaded();
 
-      // Trigger window load
-      window.onload(new Event('load'));
-
-      // Preloader should not be hidden immediately
       expect(preloader.hidden).toBe(false);
       expect(preloader.style.display).toBe('block');
 
-      // Fast forward 2 seconds
-      vi.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(600);
 
-      // Now it should be hidden
       expect(preloader.hidden).toBe(true);
       expect(preloader.style.display).toBe('none');
     });
 
-    it('should add hide-preloader class immediately on window load', async () => {
+    it('should add hide-preloader class immediately on DOMContentLoaded', async () => {
       await import('../../js/hidepreloader.js');
+      triggerDOMContentLoaded();
 
-      // Trigger window load
-      window.onload(new Event('load'));
-
-      // Class should be added immediately
       expect(preloader.classList.contains('hide-preloader')).toBe(true);
-
-      // But should not be hidden yet
       expect(preloader.hidden).toBe(false);
     });
 
     it('should add class and hide element together', async () => {
       await import('../../js/hidepreloader.js');
+      triggerDOMContentLoaded();
 
-      window.onload(new Event('load'));
-
-      // Class added immediately
       expect(preloader.classList.contains('hide-preloader')).toBe(true);
       expect(preloader.hidden).toBe(false);
 
-      // After timeout, should also be hidden
-      vi.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(600);
 
       expect(preloader.classList.contains('hide-preloader')).toBe(true);
       expect(preloader.hidden).toBe(true);
@@ -88,94 +70,81 @@ describe('Hide Preloader Module', () => {
   });
 
   describe('Timing Behavior', () => {
-    it('should not hide preloader before 2 seconds', async () => {
+    it('should not hide preloader before 600ms', async () => {
       await import('../../js/hidepreloader.js');
-      window.onload(new Event('load'));
+      triggerDOMContentLoaded();
 
-      // Advance time by 1.5 seconds (less than 2)
-      vi.advanceTimersByTime(1500);
+      vi.advanceTimersByTime(500);
 
-      // Should still be visible
       expect(preloader.hidden).toBe(false);
       expect(preloader.style.display).toBe('block');
     });
 
-    it('should hide preloader at exactly 2 seconds', async () => {
+    it('should hide preloader at exactly 600ms', async () => {
       await import('../../js/hidepreloader.js');
-      window.onload(new Event('load'));
+      triggerDOMContentLoaded();
 
-      // Advance exactly 2 seconds
-      vi.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(600);
 
-      // Should be hidden
       expect(preloader.hidden).toBe(true);
       expect(preloader.style.display).toBe('none');
     });
 
     it('should work correctly with partial time advances', async () => {
       await import('../../js/hidepreloader.js');
-      window.onload(new Event('load'));
+      triggerDOMContentLoaded();
 
-      // Advance in steps
-      vi.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(300);
       expect(preloader.hidden).toBe(false);
 
-      vi.advanceTimersByTime(500);
+      vi.advanceTimersByTime(200);
       expect(preloader.hidden).toBe(false);
 
-      vi.advanceTimersByTime(500);
+      vi.advanceTimersByTime(100);
       expect(preloader.hidden).toBe(true);
     });
   });
 
   describe('Edge Cases', () => {
     it('should handle missing preloader element gracefully', async () => {
-      // Remove preloader
       preloader.remove();
 
-      // Should not throw error
       await import('../../js/hidepreloader.js');
-      expect(() => window.onload(new Event('load'))).not.toThrow();
-      expect(() => vi.advanceTimersByTime(2000)).not.toThrow();
+      expect(() => triggerDOMContentLoaded()).not.toThrow();
+      expect(() => vi.advanceTimersByTime(600)).not.toThrow();
     });
 
     it('should handle null preloader reference', async () => {
-      // Mock getElementById to return null
       const originalGetElementById = document.getElementById;
       document.getElementById = vi.fn().mockReturnValue(null);
 
       await import('../../js/hidepreloader.js');
       expect(() => {
-        window.onload(new Event('load'));
-        vi.advanceTimersByTime(2000);
+        triggerDOMContentLoaded();
+        vi.advanceTimersByTime(600);
       }).not.toThrow();
 
-      // Restore
       document.getElementById = originalGetElementById;
     });
 
     it('should handle preloader already hidden', async () => {
-      // Set preloader as already hidden
       preloader.hidden = true;
       preloader.style.display = 'none';
 
       await import('../../js/hidepreloader.js');
-      window.onload(new Event('load'));
-      vi.advanceTimersByTime(2000);
+      triggerDOMContentLoaded();
+      vi.advanceTimersByTime(600);
 
-      // Should remain hidden
       expect(preloader.hidden).toBe(true);
       expect(preloader.style.display).toBe('none');
     });
 
     it('should handle preloader with existing classes', async () => {
-      // Add existing classes
       preloader.classList.add('existing-class', 'another-class');
 
       await import('../../js/hidepreloader.js');
-      window.onload(new Event('load'));
+      triggerDOMContentLoaded();
 
-      // Should preserve existing classes and add new one
       expect(preloader.classList.contains('existing-class')).toBe(true);
       expect(preloader.classList.contains('another-class')).toBe(true);
       expect(preloader.classList.contains('hide-preloader')).toBe(true);
@@ -183,27 +152,22 @@ describe('Hide Preloader Module', () => {
 
     it('should handle preloader removed before timeout completes', async () => {
       await import('../../js/hidepreloader.js');
-      window.onload(new Event('load'));
+      triggerDOMContentLoaded();
 
-      // Class should be added immediately
       expect(preloader.classList.contains('hide-preloader')).toBe(true);
 
-      // Remove preloader before timeout
       preloader.remove();
 
-      // Timeout should not throw error
-      expect(() => vi.advanceTimersByTime(2000)).not.toThrow();
+      expect(() => vi.advanceTimersByTime(600)).not.toThrow();
     });
 
     it('should override existing display styles', async () => {
-      // Set complex initial styles
       preloader.style.cssText = 'display: flex; position: fixed; z-index: 9999;';
 
       await import('../../js/hidepreloader.js');
-      window.onload(new Event('load'));
-      vi.advanceTimersByTime(2000);
+      triggerDOMContentLoaded();
+      vi.advanceTimersByTime(600);
 
-      // Display should be overridden to none
       expect(preloader.style.display).toBe('none');
       expect(preloader.hidden).toBe(true);
     });

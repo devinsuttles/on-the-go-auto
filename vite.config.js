@@ -17,6 +17,30 @@ const hidePreloader = () => {
   }
 }
 
+// Inline the CSS bundle into the HTML to eliminate the render-blocking request.
+const inlineCss = () => ({
+  name: "inline-css",
+  enforce: "post",
+  apply: "build",
+  transformIndexHtml: {
+    order: "post",
+    handler(html, { bundle }) {
+      if (!bundle) return html;
+      for (const [fileName, chunk] of Object.entries(bundle)) {
+        if (fileName.endsWith(".css") && chunk.type === "asset") {
+          const baseName = fileName.split("/").pop().replace(/\./g, "\\.");
+          html = html.replace(
+            new RegExp(`<link[^>]*${baseName}[^>]*>`),
+            `<style>${chunk.source}</style>`
+          );
+          delete bundle[fileName];
+        }
+      }
+      return html;
+    },
+  },
+});
+
 export default defineConfig({
   plugins: [
 
@@ -35,6 +59,10 @@ export default defineConfig({
     /* ## Minify the output HTML files in production
     --------------------------------------------- */
     IN_PRODUCTION && ViteMinifyPlugin({}),
+
+    /* ## Inline CSS bundle to eliminate render-blocking stylesheet request
+    --------------------------------------------- */
+    IN_PRODUCTION && inlineCss(),
 
   ],
 

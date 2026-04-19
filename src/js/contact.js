@@ -41,28 +41,36 @@ function updateStatusRealtime() {
 updateStatusRealtime();
 setInterval(updateStatusRealtime, 15000);
 
-// Calendly Widget
-function calendlyWidget() {
-  const calendlyContainer = document.getElementById('calendly-widget');
-  if (calendlyContainer) {
-    // Create Calendly inline widget
-    const calendlyDiv = document.createElement('div');
-    calendlyDiv.className = 'calendly-inline-widget';
-    calendlyDiv.setAttribute('data-url', 'https://calendly.com/swietonautomotive/service');
-    calendlyDiv.style.minWidth = '320px';
-    calendlyDiv.style.height = '700px';
-    
-    // Add the widget to the container
-    calendlyContainer.appendChild(calendlyDiv);
-    
-    // Load Calendly script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.head.appendChild(script);
-  }
+// Calendly Widget — lazy-loaded only when user scrolls near the section
+function loadCalendlyWidget(container) {
+  const calendlyDiv = document.createElement('div');
+  calendlyDiv.className = 'calendly-inline-widget';
+  calendlyDiv.setAttribute('data-url', 'https://calendly.com/swietonautomotive/service');
+  calendlyDiv.style.minWidth = '320px';
+  calendlyDiv.style.height = '700px';
+  container.appendChild(calendlyDiv);
+
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://assets.calendly.com/assets/external/widget.js';
+  script.async = true;
+  document.head.appendChild(script);
 }
 
-// Initialize Calendly widget when DOM is loaded
-document.addEventListener('DOMContentLoaded', calendlyWidget);
+function initCalendlyObserver() {
+  const container = document.getElementById('calendly-widget');
+  if (!container) return;
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      if (entries[0].isIntersecting) {
+        obs.disconnect();
+        loadCalendlyWidget(container);
+      }
+    },
+    { rootMargin: '200px' }
+  );
+  observer.observe(container);
+}
+
+document.addEventListener('DOMContentLoaded', initCalendlyObserver);

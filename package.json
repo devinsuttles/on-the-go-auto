@@ -11,7 +11,8 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "preview": "vite preview",
-    "bs-static": "sass --no-source-map ./src/scss/bs-dynamic.scss ./src/css/bs-compiled.css"
+    "bs-static": "sass --no-source-map ./src/scss/bs-dynamic.scss ./src/css/bs-compiled.css",
+    "generate-icons": "node scripts/generate-icon-subset.js"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^8.0.0",

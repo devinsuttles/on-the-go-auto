@@ -30,6 +30,7 @@ menuLinks.forEach((eachLink) => {
 /* ## Scroll handlers — batched reads then writes, throttled with rAF
 --------------------------------------------- */
 let menuSection = document.querySelectorAll(".nav-primary li.menu-item a");
+let currentActiveIndex = -1;
 
 menuSection.forEach((v) => {
   v.onclick = () => {
@@ -47,14 +48,16 @@ window.addEventListener("scroll", () => {
   scrollTicking = true;
 
   requestAnimationFrame(() => {
-    // Batch all reads first
     const scrollY = window.scrollY;
-    const rects = Array.from(mainSections).map((v) => v.getBoundingClientRect().y);
 
-    // Then batch all writes
-    if (scrollY >= 100) {
+    // Batch all reads first
+    const rects = Array.from(mainSections).map((v) => v.getBoundingClientRect().y);
+    const hasDarkClass = body.classList.contains("dark");
+
+    // Then batch all writes - avoid redundant classList operations
+    if (scrollY >= 100 && !hasDarkClass) {
       body.classList.add("dark");
-    } else {
+    } else if (scrollY < 100 && hasDarkClass) {
       body.classList.remove("dark");
     }
 
@@ -63,9 +66,11 @@ window.addEventListener("scroll", () => {
       if (rect < 100) activeIndex = i;
     });
 
-    if (activeIndex >= 0) {
+    // Only update DOM if index changed - avoid unnecessary reflows
+    if (activeIndex !== currentActiveIndex && activeIndex >= 0) {
       menuSection.forEach((v) => v.classList.remove("active"));
       menuSection[activeIndex].classList.add("active");
+      currentActiveIndex = activeIndex;
     }
 
     scrollTicking = false;

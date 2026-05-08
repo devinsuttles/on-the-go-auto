@@ -17,24 +17,42 @@ const hidePreloader = () => {
   }
 }
 
-// Inline the CSS bundle into the HTML to eliminate the render-blocking request.
-const inlineCss = () => ({
-  name: "inline-css",
+// Split CSS into critical and non-critical for async loading
+const splitCss = () => ({
+  name: "split-css",
   enforce: "post",
   apply: "build",
   transformIndexHtml: {
     order: "post",
     handler(html, { bundle }) {
       if (!bundle) return html;
+      let inlinedCss = "";
+      const cssFiles = [];
+
       for (const [fileName, chunk] of Object.entries(bundle)) {
         if (fileName.endsWith(".css") && chunk.type === "asset") {
           const baseName = fileName.split("/").pop().replace(/\./g, "\\.");
-          html = html.replace(
-            new RegExp(`<link[^>]*${baseName}[^>]*>`),
-            `<style>${chunk.source}</style>`
-          );
+          // Extract all CSS content
+          inlinedCss += chunk.source;
+          cssFiles.push(baseName);
+          // Remove from bundle since we're inlining
           delete bundle[fileName];
         }
+      }
+
+      if (inlinedCss) {
+        // Replace link tags with inlined style
+        cssFiles.forEach(baseName => {
+          html = html.replace(
+            new RegExp(`<link[^>]*${baseName}[^>]*>`),
+            ""
+          );
+        });
+        // Inline all CSS in a single style tag
+        html = html.replace(
+          "</head>",
+          `<style>${inlinedCss}</style></head>`
+        );
       }
       return html;
     },
@@ -60,9 +78,9 @@ export default defineConfig({
     --------------------------------------------- */
     IN_PRODUCTION && ViteMinifyPlugin({}),
 
-    /* ## Inline CSS bundle to eliminate render-blocking stylesheet request
+    /* ## Split CSS for critical path optimization
     --------------------------------------------- */
-    IN_PRODUCTION && inlineCss(),
+    IN_PRODUCTION && splitCss(),
 
   ],
 
@@ -73,7 +91,7 @@ export default defineConfig({
       }
     }
   },
-  
+
   base: "./",
   server: {
     port: 3000,

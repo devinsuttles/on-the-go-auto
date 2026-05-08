@@ -19,6 +19,7 @@
     "@vitest/ui": "^3.2.4",
     "autoprefixer": "^10.4.27",
     "bootstrap": "^5.3.3",
+    "critical": "^7.2.1",
     "cssnano": "^7.1.4",
     "jsdom": "^29.0.1",
     "postcss": "^8.5.8",

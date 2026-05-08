@@ -82,9 +82,9 @@
   <link rel="stylesheet" href="./src/css/style.css" type="text/css">
   <link rel="stylesheet" href="./src/css/boxicons-subset.css" type="text/css">
   
-  <!-- Preload Critical Images -->
-  <link rel="preload" href="./media/header-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 1024px)">
-  <link rel="preload" href="./media/header-bg.webp" as="image" type="image/webp" media="(min-width: 1025px)">
+  <!-- Preload Critical Images with fetchpriority for mobile -->
+  <link rel="preload" href="./media/header-bg-mobile.webp" as="image" type="image/webp" media="(max-width: 1024px)" fetchpriority="high">
+  <link rel="preload" href="./media/header-bg.webp" as="image" type="image/webp" media="(min-width: 1025px)" fetchpriority="high">
 </head>
 
 <body itemtype="https://schema.org/WebPage" itemscope="itemscope" class="carclub">
@@ -389,7 +389,7 @@
     </a>
   </footer>
 
-  <script type="module" defer src="./src/index.js"></script>
+  <script type="module" src="./src/index.js"></script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Q7JBD0E66"></script>
   <script>

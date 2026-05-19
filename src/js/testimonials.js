@@ -43,5 +43,15 @@ const aletBoxHtml = alertBoxesData.map((rv) => {
   return output;
 });
 
-const aletBoxesElement = document.getElementById(`review-slides`)
-if (aletBoxesElement) aletBoxesElement.innerHTML = aletBoxHtml.join(``)
+function populateTestimonialSlides() {
+  const aletBoxesElement = document.getElementById(`review-slides`);
+  if (aletBoxesElement) {
+    aletBoxesElement.innerHTML = aletBoxHtml.join(``);
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", populateTestimonialSlides);
+} else {
+  populateTestimonialSlides();
+}

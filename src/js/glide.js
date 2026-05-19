@@ -5,8 +5,7 @@ import "@glidejs/glide/dist/css/glide.theme.min.css";
 
 function initializeCarousels() {
   try {
-    const dealsSlides = document.getElementById("deals-slides");
-    if (dealsSlides && dealsSlides.children.length > 0) {
+    if (document.querySelector(".glide-deals")) {
       new Glide(".glide-deals", {
         type: "carousel",
         perView: 3,
@@ -22,8 +21,7 @@ function initializeCarousels() {
       }).mount();
     }
 
-    const serviceSlides = document.getElementById("service-slides");
-    if (serviceSlides && serviceSlides.children.length > 0) {
+    if (document.querySelector(".glide-services")) {
       new Glide(".glide-services", {
         type: "carousel",
         perView: 3,
@@ -39,8 +37,7 @@ function initializeCarousels() {
       }).mount();
     }
 
-    const reviewSlides = document.getElementById("review-slides");
-    if (reviewSlides && reviewSlides.children.length > 0) {
+    if (document.querySelector(".glide-reviews")) {
       new Glide(".glide-reviews", {
         type: "carousel",
         perView: 3,
@@ -62,31 +59,21 @@ function initializeCarousels() {
   }
 }
 
-function waitForSlidesAndInitialize() {
-  const checkAndInit = () => {
-    const dealsSlides = document.getElementById("deals-slides");
-    const serviceSlides = document.getElementById("service-slides");
-    const reviewSlides = document.getElementById("review-slides");
-
-    const allSlidesReady =
-      (dealsSlides && dealsSlides.children.length > 0) &&
-      (serviceSlides && serviceSlides.children.length > 0) &&
-      (reviewSlides && reviewSlides.children.length > 0);
-
-    if (allSlidesReady) {
-      initializeCarousels();
-    } else {
-      requestAnimationFrame(checkAndInit);
-    }
+// Ensure initialization happens after DOM is ready and after all other modules have executed
+function scheduleCarouselInit() {
+  const runInit = () => {
+    // Use requestAnimationFrame twice to ensure proper timing
+    requestAnimationFrame(() => {
+      requestAnimationFrame(initializeCarousels);
+    });
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      requestAnimationFrame(checkAndInit);
-    });
+    document.addEventListener("DOMContentLoaded", runInit);
   } else {
-    requestAnimationFrame(checkAndInit);
+    // If DOM is already loaded, schedule with microtasks to let other modules finish
+    Promise.resolve().then(runInit);
   }
 }
 
-waitForSlidesAndInitialize();
+scheduleCarouselInit();

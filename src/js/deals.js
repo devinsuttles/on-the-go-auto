@@ -33,17 +33,11 @@ function populateDealSlides() {
   const dealsSlidesElement = document.getElementById("deals-slides");
   if (dealsSlidesElement) {
     dealsSlidesElement.innerHTML = dealsSlidesHtml.join("");
-    window.dealsSlidePopulated = true;
-    window.dispatchEvent(new CustomEvent('slide-populated'));
   }
 }
 
-function initDealsSlides() {
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", populateDealSlides);
-  } else {
-    populateDealSlides();
-  }
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", populateDealSlides);
+} else {
+  populateDealSlides();
 }
-
-initDealsSlides();

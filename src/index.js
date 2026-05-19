@@ -1,6 +1,3 @@
-// Utilities - must be imported first to ensure preloader hides even if other modules fail
-import "./js/hidepreloader.js"
-
 // Page sections
 import "./js/header.js"
 import "./js/deals.js"

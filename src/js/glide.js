@@ -59,8 +59,14 @@ function initializeCarousels() {
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initializeCarousels);
-} else {
-  initializeCarousels();
+function scheduleCarouselInit() {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeCarousels);
+  } else {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(initializeCarousels);
+    });
+  }
 }
+
+scheduleCarouselInit();

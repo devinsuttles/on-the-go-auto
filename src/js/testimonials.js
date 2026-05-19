@@ -47,11 +47,17 @@ function populateTestimonialSlides() {
   const aletBoxesElement = document.getElementById(`review-slides`);
   if (aletBoxesElement) {
     aletBoxesElement.innerHTML = aletBoxHtml.join(``);
+    window.testimonialSlidePopulated = true;
+    window.dispatchEvent(new CustomEvent('slide-populated'));
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", populateTestimonialSlides);
-} else {
-  populateTestimonialSlides();
+function initTestimonialSlides() {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", populateTestimonialSlides);
+  } else {
+    populateTestimonialSlides();
+  }
 }
+
+initTestimonialSlides();

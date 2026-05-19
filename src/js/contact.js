@@ -71,6 +71,16 @@ function initCalendlyObserver() {
     { rootMargin: '200px' }
   );
   observer.observe(container);
+  window.calendlyObserverInitialized = true;
+  window.dispatchEvent(new CustomEvent('calendly-ready'));
 }
 
-document.addEventListener('DOMContentLoaded', initCalendlyObserver);
+function scheduleCalendlyInit() {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCalendlyObserver);
+  } else {
+    requestAnimationFrame(initCalendlyObserver);
+  }
+}
+
+scheduleCalendlyInit();

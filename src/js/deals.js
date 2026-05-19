@@ -29,9 +29,15 @@ const dealsSlidesHtml = dealsSlidesData.map((sl) => {
   return output
 });
 
-const dealsSlidesElement = document.getElementById("deals-slides")
+function populateDealSlides() {
+  const dealsSlidesElement = document.getElementById("deals-slides");
+  if (dealsSlidesElement) {
+    dealsSlidesElement.innerHTML = dealsSlidesHtml.join("");
+  }
+}
 
-if (dealsSlidesElement) 
-{
-  dealsSlidesElement.innerHTML = dealsSlidesHtml.join("");
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", populateDealSlides);
+} else {
+  populateDealSlides();
 }

@@ -33,7 +33,15 @@ const slideBoxesHtml = serviceSlidesData.map((sl) => {
   return output;
 });
 
-const slideBoxesElement = document.getElementById("service-slides");
+function populateServiceSlides() {
+  const slideBoxesElement = document.getElementById("service-slides");
+  if (slideBoxesElement) {
+    slideBoxesElement.innerHTML = slideBoxesHtml.join("");
+  }
+}
 
-if (slideBoxesElement) 
-  slideBoxesElement.innerHTML = slideBoxesHtml.join("");
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", populateServiceSlides);
+} else {
+  populateServiceSlides();
+}

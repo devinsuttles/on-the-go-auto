@@ -37,11 +37,17 @@ function populateServiceSlides() {
   const slideBoxesElement = document.getElementById("service-slides");
   if (slideBoxesElement) {
     slideBoxesElement.innerHTML = slideBoxesHtml.join("");
+    window.serviceSlidePopulated = true;
+    window.dispatchEvent(new CustomEvent('slide-populated'));
   }
 }
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", populateServiceSlides);
-} else {
-  populateServiceSlides();
+function initServiceSlides() {
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", populateServiceSlides);
+  } else {
+    populateServiceSlides();
+  }
 }
+
+initServiceSlides();

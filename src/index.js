@@ -9,6 +9,3 @@ import "./js/footer.js"
 
 // Third-party libraries
 import "./js/glide.js"
-
-// Utilities
-import "./js/hidepreloader.js"
